@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const DiaryEditor = () => {
+  const authorInput=useRef(); //객체 접근 가능하게 함
+  const contentInput=useRef();
   //useState를 여러번 사용하면 함수로 묶어서 쓰자
   const [state,setState]=useState({
     author:"",
@@ -19,7 +21,14 @@ const DiaryEditor = () => {
   }
 
   const handleSubmitState=()=>{
-      console.log(state);
+      if(state.author.length<1){
+        authorInput.current.focus();
+        return;
+      }
+      if(state.content.length<5){
+        contentInput.current.focus();
+        return;
+      }
       alert("저장 성공!");
   }
 
@@ -28,6 +37,7 @@ const DiaryEditor = () => {
       <h2>오늘의 일기</h2>
       <div>
         <input
+          ref={authorInput}
           name="author" 
           value={state.author} 
           onChange={handleChangeState}
@@ -37,6 +47,7 @@ const DiaryEditor = () => {
       <br/>
       <div>
         <textarea 
+          ref={contentInput}
           name="content"
           value={state.content} 
           onChange={handleChangeState}
