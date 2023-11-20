@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({onCreate}) => {
   const authorInput=useRef(); //객체 접근 가능하게 함
   const contentInput=useRef();
   //useState를 여러번 사용하면 함수로 묶어서 쓰자
@@ -29,7 +29,13 @@ const DiaryEditor = () => {
         contentInput.current.focus();
         return;
       }
+      onCreate(state.author,state.content,state.emotion);
       alert("저장 성공!");
+      setState({
+        author:"",
+        content:"",
+        emotion:1,
+      })
   }
 
   return (
