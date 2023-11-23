@@ -44,9 +44,11 @@ const DiaryEditor = ({onCreate}) => {
       <div>
         <input
           ref={authorInput}
-          name="author" 
           value={state.author} 
           onChange={handleChangeState}
+          name="author"
+          placeholder="작성자"
+          type="text" 
           //setAuthor(e.target.value); //e.target.value를 사용하면, const author 의 author를 가리키게 된다. 
         />
       </div>
@@ -54,9 +56,11 @@ const DiaryEditor = ({onCreate}) => {
       <div>
         <textarea 
           ref={contentInput}
-          name="content"
           value={state.content} 
           onChange={handleChangeState}
+          name="content"
+          placeholder="일기"
+          type="text"
         />
       </div>
       <br/>

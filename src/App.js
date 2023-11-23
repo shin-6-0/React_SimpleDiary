@@ -22,16 +22,20 @@ function App() {
     setData([newItem,...data]);
   };
 
-  const onDelete = (targetId)=>{
+  const onRemove = (targetId)=>{
     console.log(`${targetId}가 삭제되었습니다`);
     const newDiaryList=data.filter((it)=>it.id!==targetId);
     setData(newDiaryList);
   };
-
+  const onEdit=(targetId,newContent)=>{
+    setData(
+      data.map((it)=>it.id ===targetId?{...it,content:newContent}:it)
+    )//특정 일기 데이터를 수정. it.id를 map을 통해서 찾고, 이때 바꿈
+  }
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate}/>
-      <DiaryList onDelete = {onDelete} diaryList={data}/>
+      <DiaryList onEdit={onEdit} onRemove = {onRemove} diaryList={data}/>
     </div>
   );
 }
