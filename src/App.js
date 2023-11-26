@@ -4,6 +4,8 @@ import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
 import LifeCycle from './Lifecycle';
 
+//https://jsonplaceholder.typicode.com/comments 
+
 function App() {
 
   const [data,setData]  = useState([]);
